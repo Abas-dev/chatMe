@@ -7,16 +7,42 @@ from django.contrib import messages
 from django.contrib.auth.forms import UserCreationForm 
 from django.contrib.auth.models import User
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.views.generic import DetailView
+from .models import Room
 
 class HomePage(LoginRequiredMixin,TemplateView):
     template_name = 'index.html'
 
 class ChatPage(LoginRequiredMixin,TemplateView):
     template_name = 'chat.html'
+
+class CreateRoom(TemplateView):
+    template_name = 'createRoom.html'
+
+class JoinRoom(TemplateView):
+    template_name = 'joinRoom.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(JoinRoom, self).get_context_data(**kwargs)
+        context['data'] = Room.objects.all()
+        return context
+
     
+class RoomChat(DetailView):
+    template_name = 'room.html'
+    model = Room
+    
+    
+    
+    
+
+
+
+#below is the views for the login, register and logout view.
+
 class LoginPage(LoginView):
     template_name = 'signin.html'
-
+    
     def post(self, request, *args, **kwargs):
         email = self.request.POST['email']
         password = self.request.POST['password']
