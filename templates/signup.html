@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    sign up
+{% endblock %}
+
+{% block body %}
+<div class="page-content page-container" id="page-content">
+    <div class="padding">
+        <div class="row container d-flex justify-content-center">
+            <div class="col-md-6">
+                
+            <form method="post">
+                {% csrf_token %}
+                <div class="form-group">
+                    <input type="email" class="form-control" id="inputEmail" name="email" placeholder="Email">
+                </div>
+                <br>
+                <div class="form-group">
+                    <input type="text" class="form-control" id="inputEmail" name="firstname" placeholder="First name">
+                </div>
+                <br>
+                <div class="form-group">
+                    <input type="text" class="form-control" id="inputEmail" name="lastname" placeholder="Last name">
+                </div>
+                <br>
+                <div class="form-group">
+                    <input type="password" class="form-control" id="inputPassword" name="password" placeholder="Password">
+                </div>
+                <br>
+                <div class="form-group">
+                    <input type="password" class="form-control" id="inputPassword" name="passwordConf" placeholder="Confirm password">
+                </div>
+                <br>
+                <button type="submit" class="btn btn-primary">Sign up</button>
+                <span style="padding-left:90px"><a style="text-decoration: none; color:black" href="{% url 'chat:signin' %}">already have an account</a> </span>
+            </form>
+                
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

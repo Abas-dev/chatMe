@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    sign in
+{% endblock %}
+
+{% block body %}
+<div class="page-content page-container" id="page-content">
+    <div class="padding">
+        <div class="row container d-flex justify-content-center">
+            <div class="col-md-6">
+                
+            <form method="post">
+                {% csrf_token %}
+                <div class="form-group">
+                    <input type="email" class="form-control" id="inputEmail" name="email" placeholder="Email">
+                </div>
+                <br>
+                <div class="form-group">
+                    <input type="password" class="form-control" id="inputPassword" name="password" placeholder="Password">
+                </div>
+                <br>
+                <button type="submit" class="btn btn-primary">Sign in</button>
+                <span style="padding-left:90px"><a style="text-decoration: none; color:black" href="{% url 'chat:signup' %}">i dont have an account</a> </span>
+            </form>
+                
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
