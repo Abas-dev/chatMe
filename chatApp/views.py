@@ -13,11 +13,14 @@ from .models import Room
 class HomePage(LoginRequiredMixin,TemplateView):
     template_name = 'index.html'
 
+
 class ChatPage(LoginRequiredMixin,TemplateView):
     template_name = 'chat.html'
 
+
 class CreateRoom(TemplateView):
     template_name = 'createRoom.html'
+
 
 class JoinRoom(TemplateView):
     template_name = 'joinRoom.html'
@@ -26,14 +29,12 @@ class JoinRoom(TemplateView):
         context = super(JoinRoom, self).get_context_data(**kwargs)
         context['data'] = Room.objects.all()
         return context
+  
 
-    
 class RoomChat(DetailView):
     template_name = 'room.html'
     model = Room
-    
-    
-    
+    context_object_name = 'room'
     
 
 

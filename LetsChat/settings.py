@@ -74,6 +74,13 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'LetsChat.wsgi.application'
+ASGI_APPLICATION = 'LetsChat.asgi.application'
+
+CHANNEL_LAYERS = {
+    'default': {
+        'BACKEND':'channels.layers.InMemoryChannelLayer'
+    }
+}
 
 
 # Database

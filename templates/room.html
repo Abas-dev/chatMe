@@ -1,5 +1,63 @@
 {% extends 'base.html' %}
 
 {% block body %}
-    boo
+    <div class="text-center">
+        <h1 class="text-black">{{room.roomName}}</h1>
+    </div>
+
+    <div class="page-content page-container" id="page-content">
+    <div class="padding">
+        <div class="row container d-flex justify-content-center">
+          <div class="col-md-6">
+            <div class="card card-bordered">
+              <div class="card-header">
+              
+                <div class="media media-chat">
+                  <div class="media-body">
+                    <p>Hi</p><span>sent by okon</span>
+
+                    <p>How are you ...???</p><span>sent by okon</span>
+                  </div>
+                  <br>
+                  <!-- <form action="">
+                    <input class="publisher-input" type="text" placeholder="Write something">
+                    <button class="btn btn-primary mb-3" type="submit">send</button>
+                  </form> -->
+                  <form class="row g-3">
+                    <div class="col-auto">
+                        <input class="publisher-input" type="text" placeholder="Write something">
+                        <button class="btn btn-primary mb-3" type="submit">send</button>
+                    </div>
+                  </form>
+                </div>
+                
+             </div>
+          </div>
+          </div>
+          </div>
+          </div>
+{% endblock %}
+
+{% block script %}
+          {{ room.slug|json_script:'json-roomname' }}
+          <script>
+            const roomName = JSON.parse(document.getElementById('json-roomname').textContent);
+            
+            const chatSocket = new WebSocket(
+              'ws://'
+              + window.location.host
+              + '/ws/'
+              + roomName
+              + '/'
+            );
+
+
+            chatSocket.onmessage = function(e){
+              console.log('onmessage')
+            }
+
+            chatSocket.onclose = function(e){
+              console.log('onclose')
+            } 
+          </script>
 {% endblock %}
